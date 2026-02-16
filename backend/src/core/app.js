@@ -24,6 +24,10 @@ app.use(errorMiddleware);
 const personRoutes = require("../modules/persons/person.routes");
 app.use("/api/persons", personRoutes);
 
+const paymentRoutes = require("../modules/payments/payment.routes");
+
+app.use("/api/payments", paymentRoutes);
+
 
 module.exports = app;
 
