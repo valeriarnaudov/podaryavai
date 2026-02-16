@@ -20,4 +20,10 @@ app.get("/health", (req, res) => {
 
 app.use(errorMiddleware);
 
+// добави под auth routes
+const personRoutes = require("../modules/persons/person.routes");
+app.use("/api/persons", personRoutes);
+
+
 module.exports = app;
+
