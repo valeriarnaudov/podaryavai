@@ -1,6 +1,6 @@
-require("../config/db");
-require("../config/redis");
-require("./reminder.cron");
-require("./reminder.worker");
+const reminderQueue = require("../queues/reminder.queue");
 
-console.log("Worker running...");
+reminderQueue.process(async (job) => {
+  console.log("Processing reminder job:", job.data);
+  // later ще добавим email/sms logic
+});

@@ -1,9 +1,13 @@
-const connectDB = require("../config/db");
 const app = require("./app");
-require("../config/redis");
+const connectDB = require("../config/db");
+const { port } = require("../config/env");
 
-connectDB();
+const startServer = async () => {
+  await connectDB();
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log("API running...");
-});
+  app.listen(port, () => {
+    console.log(`🚀 Server running on port ${port}`);
+  });
+};
+
+startServer();
