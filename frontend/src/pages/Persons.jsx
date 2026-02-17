@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useState } from "react";
-import MainLayout from "../layout/MainLayout";
+import MainLayout from "../../layout/MainLayout";
 import Card from "../components/Card";
 import Button from "../components/Button";
 import api from "../api/axios";

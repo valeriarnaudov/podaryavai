@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Calendar from "react-calendar";
-import MainLayout from "../layout/MainLayout";
+import MainLayout from "../../layout/MainLayout";
 import "react-calendar/dist/Calendar.css";
 
 export default function CalendarView() {

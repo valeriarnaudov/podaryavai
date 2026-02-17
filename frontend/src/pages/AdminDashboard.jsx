@@ -1,4 +1,4 @@
-import MainLayout from "../layout/MainLayout";
+import MainLayout from "../../layout/MainLayout";
 import Card from "../components/Card";
 
 export default function AdminDashboard() {

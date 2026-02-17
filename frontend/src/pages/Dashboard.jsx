@@ -1,5 +1,5 @@
 import Card from "../components/Card";
-import MainLayout from "../layout/MainLayout";
+import MainLayout from "../../layout/MainLayout";
 import AnimatedCard from "../components/AnimatedCard";
 
 export default function Dashboard() {

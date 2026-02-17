@@ -1,4 +1,4 @@
-import MainLayout from "../layout/MainLayout";
+import MainLayout from "../../layout/MainLayout";
 import Card from "../components/Card";
 import Button from "../components/Button";
 import api from "../api/axios";
