@@ -1,24 +1,16 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useState, useEffect } from "react";
-
+import { createContext } from "react";
+import { Navigate, useLocation } from "react-router-dom";
 export const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+export default function RequireAuth({ children }) {
+  const token = localStorage.getItem("token");
+  const location = useLocation();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const plan = localStorage.getItem("plan");
+  if (!token) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
 
-    if (token) {
-      setUser({ token, plan });
-    }
-  }, []);
-
-  return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return children;
 }
