@@ -46,3 +46,28 @@ exports.webhook = async (req, res) => {
 
   res.json({ received: true });
 };
+
+// payment.controller.js
+exports.createCheckoutSession = async (req, res, next) => {
+  try {
+    const { plan } = req.body;
+
+    // тук map-ваш plan -> Stripe priceId
+    const priceId = mapPlanToPriceId(plan);
+
+    const session = await stripe.checkout.sessions.create({
+      mode: "subscription",
+      payment_method_types: ["card"],
+      customer_email: req.user.email,
+      line_items: [{ price: priceId, quantity: 1 }],
+      success_url: `${process.env.CLIENT_URL}/success`,
+      cancel_url: `${process.env.CLIENT_URL}/pricing`
+    });
+
+    // 👉 ТОВА Е ОТГОВОРЪТ, КОЙТО ПИТАШ
+    res.json({ url: session.url });
+
+  } catch (err) {
+    next(err);
+  }
+};

@@ -20,4 +20,7 @@ app.get("/health", (req, res) => res.json({ status: "OK" }));
 
 app.use(errorMiddleware);
 
+const paymentRoutes = require("../modules/payments/payment.routes");
+app.use("/api/payments", paymentRoutes);
+
 module.exports = app;

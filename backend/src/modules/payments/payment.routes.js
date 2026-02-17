@@ -13,4 +13,10 @@ router.post(
   ctrl.webhook
 );
 
+router.post(
+  "/create-checkout-session",
+  auth,
+  ctrl.createCheckoutSession
+);
+
 module.exports = router;

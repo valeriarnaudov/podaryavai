@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const { generateToken } = require("../../utils/jwt");
 const userService = require("../users/user.service");
+const User = require("./user.model");
+
 
 exports.register = async ({ fullName, email, password, phone }) => {
   const exists = await userService.findByEmail(email);
