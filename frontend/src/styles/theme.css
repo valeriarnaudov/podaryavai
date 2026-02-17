@@ -1,0 +1,27 @@
+:root {
+  --bg: #0e0e0e;
+  --card: #161616;
+  --accent: #c6a75e;
+  --text: #ffffff;
+  --muted: #888;
+
+  --radius: 12px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+}
+
+h1 {
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+h3 {
+  font-weight: 500;
+}
