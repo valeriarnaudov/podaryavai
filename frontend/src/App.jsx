@@ -1,32 +1,34 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+
+// Public
+import Landing from "./pages/Landing";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Pricing from "./pages/Pricing";
+
+// Layout
+import AppLayout from "./layout/AppLayout";
+
+// Protected pages
 import Dashboard from "./pages/Dashboard";
-import { AuthProvider } from "./context/AuthContext";
-import Ultra from "./pages/Ultra";
-import AdminDashboard from "./pages/AdminDashboard";
 import CalendarView from "./pages/CalendarView";
-import ProtectedRoute from "./components/ProtectedRoute";
+import Ultra from "./pages/Ultra";
 
 export default function App() {
-    return (
-        <BrowserRouter>
-            <AuthProvider>
-                <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/ultra" element={<Ultra />} />
-                    <Route path="/admin" element={<AdminDashboard />} />
-                    <Route path="/calendar" element={<CalendarView />} />
-                    <Route
-                        path="/admin"
-                        element={
-                            <ProtectedRoute>
-                                <AdminDashboard />
-                            </ProtectedRoute>
-                        }
-                    />
-                </Routes>
-            </AuthProvider>
-        </BrowserRouter>
-    );
+  return (
+    <Routes>
+      {/* PUBLIC */}
+      <Route path="/" element={<Landing />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/pricing" element={<Pricing />} />
+
+      {/* PROTECTED */}
+      <Route element={<AppLayout />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/calendar" element={<CalendarView />} />
+        <Route path="/ultra" element={<Ultra />} />
+      </Route>
+    </Routes>
+  );
 }
