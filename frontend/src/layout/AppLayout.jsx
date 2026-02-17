@@ -1,13 +1,17 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
+import Navbar from "./Navbar";
 
 export default function AppLayout() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
-      <Sidebar />
-      <div style={{ flex: 1 }}>
-        <Navbar />
+    <div>
+      <Sidebar isOpen={open} onClose={() => setOpen(false)} />
+
+      <div style={{ marginLeft: window.innerWidth > 768 ? 260 : 0 }}>
+        <Navbar onMenu={() => setOpen(!open)} />
         <main style={{ padding: 24 }}>
           <Outlet />
         </main>

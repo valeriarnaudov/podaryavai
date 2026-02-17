@@ -1,58 +1,60 @@
-import MainLayout from "../../layout/MainLayout";
-import Card from "../components/Card";
-import Button from "../components/Button";
-import api from "../api/axios";
-
 export default function Pricing() {
-
-  const handleCheckout = async (plan) => {
-    const res = await api.post("/payments/create-checkout-session", {
-      plan
-    });
-
-    window.location.href = res.data.url;
-  };
-
   return (
-    <MainLayout>
-      <h1 style={{ marginBottom: 30 }}>Choose Your Plan</h1>
+    <section style={{ maxWidth: 1100, margin: "0 auto", padding: "80px 20px" }}>
+      <h1>Избери план</h1>
+      <p style={{ opacity: 0.8, marginBottom: 40 }}>
+        Започни безплатно и надграждай, когато имаш нужда.
+      </p>
 
-      <div style={gridStyle}>
-        <Card>
-          <h2>Basic</h2>
-          <p style={priceStyle}>€9 / month</p>
-          <Button onClick={() => handleCheckout("basic")}>
-            Get Basic
-          </Button>
-        </Card>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 24 }}>
+        <Plan
+          title="Безплатен"
+          price="0 лв"
+          features={[
+            "До 2 човека",
+            "Напомняния",
+            "Основни функции"
+          ]}
+        />
 
-        <Card>
-          <h2 style={{ color: "var(--accent)" }}>Pro</h2>
-          <p style={priceStyle}>€19 / month</p>
-          <Button onClick={() => handleCheckout("pro")}>
-            Get Pro
-          </Button>
-        </Card>
+        <Plan
+          title="Pro"
+          price="9.99 лв / месец"
+          highlight
+          features={[
+            "До 15 човека",
+            "Разширени напомняния",
+            "История"
+          ]}
+        />
 
-        <Card>
-          <h2>Ultra</h2>
-          <p style={priceStyle}>€39 / month</p>
-          <Button onClick={() => handleCheckout("ultra")}>
-            Go Ultra
-          </Button>
-        </Card>
+        <Plan
+          title="Ultra"
+          price="29.99 лв / месец"
+          features={[
+            "Неограничено",
+            "Личен консерж",
+            "Помощ с подаръци"
+          ]}
+        />
       </div>
-    </MainLayout>
+    </section>
   );
 }
 
-const gridStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-  gap: "24px"
-};
-
-const priceStyle = {
-  fontSize: 24,
-  margin: "20px 0"
-};
+function Plan({ title, price, features, highlight }) {
+  return (
+    <div style={{
+      padding: 24,
+      borderRadius: 16,
+      border: highlight ? "2px solid var(--accent)" : "1px solid rgba(255,255,255,0.1)"
+    }}>
+      <h3>{title}</h3>
+      <strong>{price}</strong>
+      <ul>
+        {features.map(f => <li key={f}>{f}</li>)}
+      </ul>
+      <button>Избери</button>
+    </div>
+  );
+}
